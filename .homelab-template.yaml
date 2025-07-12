@@ -1,0 +1,44 @@
+_commit: v1.12.1-8-gfd63265
+_src_path: /Users/crthomas/code/charlesthomas/homelab-template
+additionalResources: ''
+backups: false
+helm: false
+homepageDescription: Table Topper
+homepageEnabled: true
+homepageGroup: Tools
+homepageIcon: foundry-vtt
+homepageName: Foundry VTT
+ingClass: nginx-external
+ingCname: vtt.crt.lol
+ingExtraAnnotations: ''
+ingHost: vtt.crt.lol
+ingName: foundry
+ingPathType: Prefix
+ingWebSockets: false
+ingress: true
+labels: 'app: foundry'
+name: foundry
+namespace: foundry
+pvc: true
+pvcAccessMode: ReadWriteOnce
+pvcName: foundry
+pvcSize: 10Gi
+pvcStorageClass: longhorn-retain
+reloader: true
+resources:
+- deployments.yaml
+- external-secrets.yaml
+- ingresses.yaml
+- pvcs.yaml
+- services.yaml
+service: true
+serviceAccount: false
+svcName: foundry
+svcPortName: http
+svcPortNum: 30000
+svcProtocol: TCP
+svcSelector: 'app: foundry'
+svcTargetPort: http
+svcType: ClusterIP
+upstreamURL: https://foundryvtt.com
+url: https://github.com/charlesthomas/homelab-foundry-vtt
