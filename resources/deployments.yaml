@@ -1,0 +1,66 @@
+---
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  name: foundry
+  namespace: foundry
+  labels:
+    app: foundry
+spec:
+  selector:
+    matchLabels:
+      app: foundry
+  template:
+    metadata:
+      labels:
+        app: foundry
+    spec:
+      containers:
+      - name: foundry
+        image: foundry
+        imagePullPolicy: IfNotPresent
+        ports:
+        - name: foundry
+          containerPort: 30000
+        env:
+        - name: FOUNDRY_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: foundry
+              key: password
+        - name: FOUNDRY_USERNAME
+          valueFrom:
+            secretKeyRef:
+              name: foundry
+              key: username
+        - name: FOUNDRY_ADMIN_KEY
+          valueFrom:
+            secretKeyRef:
+              name: foundry
+              key: admin-key
+        - name: PUID
+          value: "1000"
+        - name: PGID
+          value: "1000"
+        - name: TZ
+          value: "America/Detroit"
+        volumeMounts:
+        - name: foundry
+          mountPath: /data
+        resources:
+          limits:
+            memory: 4Gi
+        readinessProbe:
+          tcpSocket:
+            port: http
+          initialDelaySeconds: 5
+          periodSeconds: 10
+        livenessProbe:
+          tcpSocket:
+            port: http
+          initialDelaySeconds: 15
+          periodSeconds: 20
+      volumes:
+      - name: foundry
+        persistentVolumeClaim:
+          claimName: foundry
