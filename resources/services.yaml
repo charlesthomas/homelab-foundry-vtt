@@ -1,0 +1,15 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: foundry
+  namespace: foundry
+spec:
+  type: ClusterIP
+  ports:
+  - port: 30000
+    targetPort: http
+    protocol: TCP
+    name: http
+  selector:
+    app: foundry
