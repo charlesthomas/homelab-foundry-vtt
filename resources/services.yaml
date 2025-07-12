@@ -10,6 +10,6 @@ spec:
   type: ClusterIP
   ports:
     - port: 30000
-      targetPort: foundry
+      targetPort: http
   selector:
     app: foundry
