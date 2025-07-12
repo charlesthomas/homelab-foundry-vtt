@@ -22,7 +22,7 @@ spec:
         image: foundry
         imagePullPolicy: IfNotPresent
         ports:
-        - name: foundry
+        - name: http
           containerPort: 30000
         env:
         - name: FOUNDRY_PASSWORD
