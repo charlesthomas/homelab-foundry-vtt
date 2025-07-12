@@ -15,6 +15,12 @@ resources:
 - resources/namespaces.yaml
 - resources/pvcs.yaml
 - resources/services.yaml
+
+images:
+  - name: foundry
+    newName: ghcr.io/felddy/foundryvtt
+    newTag: 13.346.0
+
 patches:
 - patch: |-
     apiVersion: apps/v1
@@ -36,7 +42,7 @@ patches:
         gethomepage.dev/href: https://vtt.crt.lol
         gethomepage.dev/enabled: "true"
         gethomepage.dev/description: Table Topper
-        gethomepage.dev/group: Tools
+        gethomepage.dev/group: Media
         gethomepage.dev/icon: foundry-vtt
         gethomepage.dev/name: Foundry VTT
         gethomepage.dev/pod-selector: ""
