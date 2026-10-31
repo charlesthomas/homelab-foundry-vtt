@@ -5,8 +5,10 @@ namespace: foundry
 
 commonAnnotations:
   repo: https://github.com/charlesthomas/homelab-foundry-vtt
-commonLabels:
-  app: foundry
+labels:
+- includeSelectors: true
+  pairs:
+    app: foundry
 
 resources:
 - resources/deployments.yaml
@@ -48,3 +50,11 @@ patches:
         gethomepage.dev/pod-selector: ""
   target:
     kind: Ingress
+configMapGenerator:
+- name: grafana-dashboard-foundry
+  files:
+  - grafana/foundry.json
+  options:
+    disableNameSuffixHash: true
+    labels:
+      grafana_dashboard: "1"
