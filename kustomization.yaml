@@ -5,8 +5,10 @@ namespace: foundry
 
 commonAnnotations:
   repo: https://github.com/charlesthomas/homelab-foundry-vtt
-commonLabels:
-  app: foundry
+labels:
+- includeSelectors: true
+  pairs:
+    app: foundry
 
 resources:
 - resources/deployments.yaml
